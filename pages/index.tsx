@@ -11,6 +11,8 @@ import {
   Input,
   AspectRatio,
 } from "@chakra-ui/react";
+import { WalletSelection } from "../components/WalletSelection";
+import { useWeb3 } from "@lido-sdk/web3-react";
 
 export async function getStaticProps() {
   return {
@@ -18,6 +20,7 @@ export async function getStaticProps() {
   };
 }
 export default function Home() {
+  const { account } = useWeb3();
   return (
     <Flex
       minH={"100vh"}
@@ -61,12 +64,14 @@ export default function Home() {
           </Link>
         </HStack>
         <HStack
+          justifyContent={"flex-end"}
           spacing={4}
           textTransform={"uppercase"}
           fontWeight={"bold"}
           flex={1}
           px={4}
         >
+          <WalletSelection />
           {/* <Text>Discord</Text>
           <Text>Twitter</Text>
           <Text>Instagram</Text>
@@ -129,9 +134,13 @@ export default function Home() {
               </HStack>
             </Stack>
           </Flex>
-          <Button borderRadius={"18px"} background={"#e3e3e3"}>
-            Connect Wallet
-          </Button>
+          {account ? (
+            <Button borderRadius={"18px"} background={"#e3e3e3"}>
+              Mint
+            </Button>
+          ) : (
+            <WalletSelection borderRadius={"18px"} background={"#e3e3e3"} />
+          )}
         </Stack>
         <AspectRatio ratio={1} flex={1}>
           <Image src="section1.png" />
