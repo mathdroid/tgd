@@ -143,7 +143,7 @@ function Home() {
                 <Button borderRadius={"full"} onClick={decrease}>
                   -
                 </Button>
-                <Input value={mintAmount} textAlign={"center"} />
+                <Input value={mintAmount} textAlign={"center"} readOnly />
                 <Button borderRadius={"full"} onClick={increase}>
                   +
                 </Button>
