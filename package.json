@@ -20,6 +20,7 @@
     "@lido-sdk/react": "^1.17.0",
     "@lido-sdk/web3-react": "^1.13.0",
     "@usedapp/core": "^0.7.3",
+    "ethers": "^5.5.2",
     "framer-motion": "^4",
     "next": "12.0.7",
     "react": "17.0.2",

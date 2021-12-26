@@ -13,10 +13,14 @@ import {
   ChakraProvider,
   theme,
 } from "@chakra-ui/react";
+
+import { Contract } from "ethers";
 import { WalletSelection } from "../components/WalletSelection";
 import { ProviderWeb3, useWeb3 } from "@lido-sdk/web3-react";
 import { CHAINS } from "@lido-sdk/constants";
 import { supportedChainIds, rpc } from "../contract";
+import { useState } from "react";
+import abi from "../abi.json";
 
 export async function getStaticProps() {
   return {
@@ -24,7 +28,15 @@ export async function getStaticProps() {
   };
 }
 function Home() {
-  const { account } = useWeb3();
+  const { account, library } = useWeb3();
+  const [minted] = useState(0);
+  const [mintAmount, setMintAmount] = useState(1);
+  const increase = () => {
+    setMintAmount(mintAmount + 1);
+  };
+  const decrease = () => {
+    setMintAmount(mintAmount > 1 ? mintAmount - 1 : 1);
+  };
   return (
     <Flex
       minH={"100vh"}
@@ -113,7 +125,7 @@ function Home() {
               position="relative"
             ></Flex>
             <Flex direction="column" px={4} py={2}>
-              <Heading textAlign={"center"}>3225/5000</Heading>
+              <Heading textAlign={"center"}>{minted}/1100</Heading>
               <Text fontSize={"xs"} alignSelf={"flex-end"}>
                 Minted
               </Text>
@@ -128,14 +140,40 @@ function Home() {
             <Stack p={4}>
               <Text textAlign={"center"}>Amount To Mint</Text>
               <HStack>
-                <Button borderRadius={"full"}>-</Button>
-                <Input value={0} textAlign={"center"} />
-                <Button borderRadius={"full"}>+</Button>
+                <Button borderRadius={"full"} onClick={decrease}>
+                  -
+                </Button>
+                <Input value={mintAmount} textAlign={"center"} />
+                <Button borderRadius={"full"} onClick={increase}>
+                  +
+                </Button>
               </HStack>
             </Stack>
           </Flex>
           {account ? (
-            <Button borderRadius={"18px"} background={"#e3e3e3"}>
+            <Button
+              borderRadius={"18px"}
+              background={"#e3e3e3"}
+              onClick={async () => {
+                // setIsCompounding(true);
+                try {
+                  const connectedContract = new Contract(
+                    process.env.NEXT_PUBLIC_SC_CONTRACT_ADDRESS,
+                    abi,
+                    library?.getSigner()
+                  );
+                  const mintTx = await connectedContract.mint({
+                    value: `${5 * mintAmount}0000000000000000`,
+                  });
+                  await mintTx.wait();
+                  console.log(`${mintTx.hash}`);
+                } catch (e) {
+                  console.error(e);
+                } finally {
+                  // setIsCompounding(false);
+                }
+              }}
+            >
               Mint
             </Button>
           ) : (
