@@ -72,10 +72,6 @@ export default function Home() {
           px={4}
         >
           <WalletSelection />
-          {/* <Text>Discord</Text>
-          <Text>Twitter</Text>
-          <Text>Instagram</Text>
-          <Text>OpenSea</Text> */}
         </HStack>
       </Flex>
       <Flex
