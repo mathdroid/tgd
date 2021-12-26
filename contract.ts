@@ -11,5 +11,8 @@ const contractAddress = constants.contractAddress;
 const contractInterface = new utils.Interface(abi);
 export const contract = new Contract(contractAddress, contractInterface);
 
+export const rpc = {
+  [constants.network]: constants.rpc,
+};
 const providerRpc = getRpcProvider(constants.network, constants.rpc);
 export const contractRpc = getERC20Contract(contractAddress, providerRpc);
