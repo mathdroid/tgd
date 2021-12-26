@@ -1,5 +1,5 @@
 import { Contract, utils } from "ethers";
-import abi from "./public/abi.json";
+import abi from "./abi.json";
 import { CHAINS, getTokenAddress, TOKENS } from "@lido-sdk/constants";
 import { getERC20Contract } from "@lido-sdk/contracts";
 import { getRpcProvider } from "@lido-sdk/providers";
