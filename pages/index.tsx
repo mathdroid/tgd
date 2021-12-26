@@ -10,16 +10,20 @@ import {
   Button,
   Input,
   AspectRatio,
+  ChakraProvider,
+  theme,
 } from "@chakra-ui/react";
 import { WalletSelection } from "../components/WalletSelection";
-import { useWeb3 } from "@lido-sdk/web3-react";
+import { ProviderWeb3, useWeb3 } from "@lido-sdk/web3-react";
+import { CHAINS } from "@lido-sdk/constants";
+import { supportedChainIds, rpc } from "../contract";
 
 export async function getStaticProps() {
   return {
     props: {},
   };
 }
-export default function Home() {
+function Home() {
   const { account } = useWeb3();
   return (
     <Flex
@@ -227,3 +231,19 @@ export default function Home() {
     </Flex>
   );
 }
+
+const Page = () => {
+  return (
+    <ProviderWeb3
+      defaultChainId={CHAINS.Mainnet}
+      supportedChainIds={supportedChainIds}
+      rpc={rpc}
+    >
+      <ChakraProvider theme={theme}>
+        <Home />
+      </ChakraProvider>
+    </ProviderWeb3>
+  );
+};
+
+export default Page;
