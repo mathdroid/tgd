@@ -19,6 +19,7 @@
     "@lido-sdk/providers": "^1.4.0",
     "@lido-sdk/react": "^1.17.0",
     "@lido-sdk/web3-react": "^1.13.0",
+    "@storyofams/next-password-protect": "^1.5.14",
     "@usedapp/core": "^0.7.3",
     "ethers": "^5.5.2",
     "framer-motion": "^4",

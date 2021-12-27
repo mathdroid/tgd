@@ -19,8 +19,10 @@ import { WalletSelection } from "../components/WalletSelection";
 import { ProviderWeb3, useWeb3 } from "@lido-sdk/web3-react";
 import { CHAINS } from "@lido-sdk/constants";
 import { supportedChainIds, rpc } from "../contract";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import abi from "../abi.json";
+import { withPasswordProtect } from "@storyofams/next-password-protect";
+import constants from "../constants";
 
 export async function getStaticProps() {
   return {
@@ -37,6 +39,9 @@ function Home() {
   const decrease = () => {
     setMintAmount(mintAmount > 1 ? mintAmount - 1 : 1);
   };
+  useEffect(() => {
+    console.log(constants.contractAddress);
+  }, []);
   return (
     <Flex
       minH={"100vh"}
@@ -158,7 +163,7 @@ function Home() {
                 // setIsCompounding(true);
                 try {
                   const connectedContract = new Contract(
-                    process.env.NEXT_PUBLIC_SC_CONTRACT_ADDRESS,
+                    constants.contractAddress,
                     abi,
                     library?.getSigner()
                   );
@@ -284,4 +289,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withPasswordProtect(Page);

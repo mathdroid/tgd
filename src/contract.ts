@@ -5,7 +5,7 @@ import { getERC20Contract } from "@lido-sdk/contracts";
 import { getRpcProvider } from "@lido-sdk/providers";
 import constants from "./constants";
 
-export const supportedChainIds = [CHAINS.Mainnet, CHAINS.Rinkeby];
+export const supportedChainIds = [CHAINS.Rinkeby];
 
 const contractAddress = constants.contractAddress;
 const contractInterface = new utils.Interface(abi);
