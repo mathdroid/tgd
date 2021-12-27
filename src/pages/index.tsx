@@ -155,11 +155,11 @@ function Home() {
             <Stack p={4}>
               <Text textAlign={"center"}>Amount To Mint</Text>
               <HStack>
-                <Button borderRadius={"full"} onClick={decrease}>
+                <Button borderRadius={"full"} onClick={decrease} disabled>
                   -
                 </Button>
-                <Input value={mintAmount} textAlign={"center"} readOnly />
-                <Button borderRadius={"full"} onClick={increase}>
+                <Input value={1} textAlign={"center"} readOnly disabled />
+                <Button borderRadius={"full"} onClick={increase} disabled>
                   +
                 </Button>
               </HStack>
@@ -178,7 +178,7 @@ function Home() {
                     library?.getSigner()
                   );
                   const mintTx = await connectedContract.mint({
-                    value: `${4 * mintAmount}0000000000000000`,
+                    value: `40000000000000000`,
                   });
                   await mintTx.wait();
                   console.log(`${mintTx.hash}`);
