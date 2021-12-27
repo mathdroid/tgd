@@ -178,7 +178,7 @@ function Home() {
                     library?.getSigner()
                   );
                   const mintTx = await connectedContract.mint({
-                    value: `${5 * mintAmount}0000000000000000`,
+                    value: `${4 * mintAmount}0000000000000000`,
                   });
                   await mintTx.wait();
                   console.log(`${mintTx.hash}`);
