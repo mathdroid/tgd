@@ -14,24 +14,31 @@ import {
   theme,
 } from "@chakra-ui/react";
 
-import { Contract } from "ethers";
+import { Contract, BigNumber, utils } from "ethers";
 import { WalletSelection } from "../components/WalletSelection";
 import { ProviderWeb3, useWeb3 } from "@lido-sdk/web3-react";
 import { CHAINS } from "@lido-sdk/constants";
-import { supportedChainIds, rpc } from "../contract";
+import { supportedChainIds, rpc, config } from "../contract";
 import { useEffect, useState } from "react";
 import abi from "../abi.json";
 import { withPasswordProtect } from "@storyofams/next-password-protect";
 import constants from "../constants";
+import { DAppProvider, useContractCall } from "@usedapp/core";
 
-export async function getStaticProps() {
-  return {
-    props: {},
-  };
+export function useMintedAmount() {
+  const [totalMinted]: any =
+    useContractCall({
+      abi: new utils.Interface(abi),
+      address: constants.contractAddress,
+      method: "totalSupply",
+      args: [],
+    }) ?? [];
+  return BigNumber.isBigNumber(totalMinted)
+    ? BigNumber.from(totalMinted).toNumber()
+    : 0;
 }
 function Home() {
   const { account, library } = useWeb3();
-  const [minted] = useState(0);
   const [mintAmount, setMintAmount] = useState(1);
   const increase = () => {
     setMintAmount(mintAmount + 1);
@@ -42,6 +49,8 @@ function Home() {
   useEffect(() => {
     console.log(constants.contractAddress);
   }, []);
+
+  const minted = useMintedAmount();
   return (
     <Flex
       minH={"100vh"}
@@ -67,6 +76,7 @@ function Home() {
           fontWeight={"bold"}
           flex={1}
           px={4}
+          justifyContent={"center"}
         >
           <Link href="#mint">
             <Text>Mint</Text>
@@ -186,13 +196,13 @@ function Home() {
           )}
         </Stack>
         <AspectRatio ratio={1} flex={1}>
-          <Image src="section1.png" />
+          <Image src="section1.jpg" />
         </AspectRatio>
       </Flex>
       <Flex minH="80vh" dir="row" justifyContent={"space-between"} id="about">
         <Flex
           flex={4}
-          backgroundImage="section2.png"
+          backgroundImage="c10.png"
           backgroundSize="cover"
           backgroundPosition={"center"}
         />
@@ -283,7 +293,9 @@ const Page = () => {
       rpc={rpc}
     >
       <ChakraProvider theme={theme}>
-        <Home />
+        <DAppProvider config={config}>
+          <Home />
+        </DAppProvider>
       </ChakraProvider>
     </ProviderWeb3>
   );

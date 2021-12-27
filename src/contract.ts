@@ -4,6 +4,7 @@ import { CHAINS, getTokenAddress, TOKENS } from "@lido-sdk/constants";
 import { getERC20Contract } from "@lido-sdk/contracts";
 import { getRpcProvider } from "@lido-sdk/providers";
 import constants from "./constants";
+import { Config } from "@usedapp/core";
 
 export const supportedChainIds = [CHAINS.Rinkeby];
 
@@ -17,3 +18,10 @@ export const rpc = {
 };
 const providerRpc = getRpcProvider(constants.network, constants.rpc);
 export const contractRpc = getERC20Contract(contractAddress, providerRpc);
+
+export const config: Config = {
+  readOnlyChainId: constants.network,
+  readOnlyUrls: {
+    [constants.network]: constants.rpc,
+  },
+};
