@@ -14,6 +14,7 @@ import {
   ChakraProvider,
   theme,
   Center,
+  SimpleGrid,
 } from "@chakra-ui/react";
 
 import { Contract, BigNumber, utils } from "ethers";
@@ -26,6 +27,7 @@ import abi from "../abi.json";
 import { withPasswordProtect } from "@storyofams/next-password-protect";
 import constants from "../constants";
 import { DAppProvider, useContractCall } from "@usedapp/core";
+import { NextSeo } from "next-seo";
 
 export function useMintedAmount() {
   const [totalMinted]: any =
@@ -73,6 +75,7 @@ function Home() {
           <Image src="/logo.svg" />
         </Link>
         <HStack
+          display={["none", "none", "flex"]}
           spacing={4}
           textTransform={"uppercase"}
           fontWeight={"bold"}
@@ -130,7 +133,12 @@ function Home() {
               Join The Society
             </Text>
           </Center>
-          <Flex flexDir="row" justifyContent="space-between">
+          <Flex
+            flexDir="row"
+            justifyContent="space-around"
+            alignItems="center"
+            flex={1}
+          >
             <Flex
               background={"#fff"}
               borderRadius={"full"}
@@ -195,8 +203,6 @@ function Home() {
             >
               {account ? (
                 <Button
-                  size="lg"
-                  height="100%"
                   color="#fff"
                   borderRadius={"full"}
                   background={"#7F66DE"}
@@ -322,8 +328,8 @@ function Home() {
         <Heading textAlign={"center"} textTransform={"uppercase"}>
           THE TEAM
         </Heading>
-        <Flex justifyContent="space-between" alignItems="start">
-          <HStack w="20%">
+        <SimpleGrid columns={[1, 2, 4]}>
+          <HStack maxW="24rem" w="100%">
             <Stack>
               <Image
                 src="/teams/Anton.png"
@@ -337,7 +343,7 @@ function Home() {
               <Text>Founder of The Goods Dept</Text>
             </Stack>
           </HStack>
-          <HStack w="20%">
+          <HStack maxW="24rem" w="100%">
             <Stack>
               <Image
                 src="/teams/Hendrick.png"
@@ -351,7 +357,7 @@ function Home() {
               <Text>Head of Marketing The Goods Dept</Text>
             </Stack>
           </HStack>
-          <HStack w="20%">
+          <HStack maxW="24rem" w="100%">
             <Stack>
               <Image
                 src="/teams/iman.png"
@@ -365,7 +371,7 @@ function Home() {
               <Text>Lead Character Designer</Text>
             </Stack>
           </HStack>
-          <HStack w="20%">
+          <HStack maxW="24rem" w="100%">
             <Stack>
               <Image
                 src="/teams/yudha.png"
@@ -379,7 +385,49 @@ function Home() {
               <Text>Creative Head The Goods Dept</Text>
             </Stack>
           </HStack>
-        </Flex>
+          <HStack maxW="24rem" w="100%">
+            <Stack>
+              <Image
+                src="/teams/nov.jpeg"
+                borderRadius="20px"
+                maxW="197px"
+                maxH="197px"
+                w="100%"
+                h="10%"
+              ></Image>
+              <Heading size="md">Novrizal Pratama</Heading>
+              <Text>Gaspack - Community Advisor</Text>
+            </Stack>
+          </HStack>
+          <HStack maxW="24rem" w="100%">
+            <Stack>
+              <Image
+                src="/teams/sunny.jpeg"
+                borderRadius="20px"
+                maxW="197px"
+                maxH="197px"
+                w="100%"
+                h="10%"
+              ></Image>
+              <Heading size="md">Sunny Gho</Heading>
+              <Text>Gaspack - Creative Advisor</Text>
+            </Stack>
+          </HStack>
+          <HStack maxW="24rem" w="100%">
+            <Stack>
+              <Image
+                src="/teams/irzan.jpeg"
+                borderRadius="20px"
+                maxW="197px"
+                maxH="197px"
+                w="100%"
+                h="10%"
+              ></Image>
+              <Heading size="md">Irzan Raditya</Heading>
+              <Text>Gaspack - Tech Advisor</Text>
+            </Stack>
+          </HStack>
+        </SimpleGrid>
       </Stack>
 
       <Stack p={16} alignContent={"stretch"}>
@@ -398,6 +446,24 @@ const Page = () => {
       supportedChainIds={supportedChainIds}
       rpc={rpc}
     >
+      <NextSeo
+        title="The Goods Society"
+        description="The Goods Society Minting Page"
+        openGraph={{
+          type: "website",
+          url: "https://nft.thegoodsdept.com",
+          title: "The Goods Society",
+          description: "The Goods Society Minting Page",
+          images: [
+            {
+              url: "https://nft.thegoodsdept.com/section1.jpg",
+              width: 800,
+              height: 800,
+              alt: "The Goods Society",
+            },
+          ],
+        }}
+      />
       <ChakraProvider theme={theme}>
         <DAppProvider config={config}>
           <Home />
@@ -407,4 +473,4 @@ const Page = () => {
   );
 };
 
-export default withPasswordProtect(Page);
+export default Page;
