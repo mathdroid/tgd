@@ -134,7 +134,7 @@ function Home() {
             </Text>
           </Center>
           <Flex
-            flexDir="row"
+            flexDir={"column"}
             justifyContent="space-around"
             alignItems="center"
             flex={1}
@@ -145,6 +145,7 @@ function Home() {
               direction="column"
               alignContent={"center"}
               w="30%"
+              minW="24rem"
             >
               <Flex
                 background={"#fff"}
@@ -199,11 +200,13 @@ function Home() {
               borderRadius={"full"}
               direction="column"
               alignContent={"center"}
-              w="30%"
+              width={["100%"]}
             >
               {account ? (
                 <Button
+                  alignSelf={"center"}
                   color="#fff"
+                  w="24rem"
                   borderRadius={"full"}
                   background={"#7F66DE"}
                   alignContent={"center"}
@@ -323,12 +326,13 @@ function Home() {
           </HStack>
         </Flex>
       </Stack>
+      <Image src="customize.png" alignSelf="center" />
 
       <Stack spacing={16} p={16} id="utilities" bg="#fff">
         <Heading textAlign={"center"} textTransform={"uppercase"}>
           THE TEAM
         </Heading>
-        <SimpleGrid columns={[1, 2, 4]}>
+        <SimpleGrid columns={[1, 2, 4]} spacing={2}>
           <HStack maxW="24rem" w="100%">
             <Stack>
               <Image
