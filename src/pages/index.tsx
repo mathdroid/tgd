@@ -244,10 +244,16 @@ function Home() {
         </AspectRatio> */}
       </Flex>
 
-      <Flex minH="80vh" dir="row" justifyContent={"space-between"} id="about">
+      <Flex
+        minH="80vh"
+        direction={["column", "column", "row"]}
+        justifyContent={"space-between"}
+        id="about"
+      >
         {/* <Image src="c10.png"></Image> */}
         <Flex
           flex={4}
+          minHeight="24rem"
           backgroundImage="c10.png"
           backgroundSize="cover"
           backgroundPosition={"center"}
@@ -277,54 +283,44 @@ function Home() {
         <Heading textAlign={"center"} textTransform={"uppercase"}>
           Utilities
         </Heading>
-        <Flex justifyContent="space-between">
-          <HStack spacing={16} w="40%">
-            <Stack>
-              <Image src="/benefit.png"></Image>
-              <Heading>FREE COFFEE AT THE GOODS CAFE FOR 1 YEAR</Heading>
-              <Text>
-                As part of the goods society, enjoy our goods coffee for free
-                every Monday - Wednesday starting February 2022.
-              </Text>
-            </Stack>
-          </HStack>
-          <HStack spacing={16} w="40%">
-            <Stack>
-              <Image src="/benefit2.png"></Image>
-              <Heading>
-                PRIVILEGE TO OWN THE FIRST EVER NON FUNGIBLE TOTE BAG
-              </Heading>
-              <Text>
-                A physical limited edition tote bag with NFT to verify its
-                ownership.
-              </Text>
-            </Stack>
-          </HStack>
-        </Flex>
-        <Flex justifyContent="space-between">
-          <HStack spacing={16} w="40%">
-            <Stack>
-              <Image src="/benefit3.png"></Image>
-              <Heading>
-                INSTANT OWNERSHIP OF THE GOODS PLUS BLACK LEVEL MEMBERSHIP CARD
-              </Heading>
-              <Text>
-                Up to 50% discount on all The Goods Dept Product and Up to 30%
-                on all The Goods Dept FNB on birthday.
-              </Text>
-            </Stack>
-          </HStack>
-          <HStack spacing={16} w="40%">
-            <Stack>
-              <Image src="/benefit4.png"></Image>
-              <Heading>EARLY ACCESS TO THE GOODS DEPT COLLECTION DROPS</Heading>
-              <Text>
-                New shoes? Limited edition products? going to the hippest event
-                in town? your our VIP on every activities.
-              </Text>
-            </Stack>
-          </HStack>
-        </Flex>
+        <SimpleGrid columns={[1, 1, 2]} spacing={4}>
+          <Stack>
+            <Image src="/benefit.png"></Image>
+            <Heading>FREE COFFEE AT THE GOODS CAFE FOR 1 YEAR</Heading>
+            <Text>
+              As part of the goods society, enjoy our goods coffee for free
+              every Monday - Wednesday starting February 2022.
+            </Text>
+          </Stack>
+          <Stack>
+            <Image src="/benefit2.png"></Image>
+            <Heading>
+              PRIVILEGE TO OWN THE FIRST EVER NON FUNGIBLE TOTE BAG
+            </Heading>
+            <Text>
+              A physical limited edition tote bag with NFT to verify its
+              ownership.
+            </Text>
+          </Stack>
+          <Stack>
+            <Image src="/benefit3.png"></Image>
+            <Heading>
+              INSTANT OWNERSHIP OF THE GOODS PLUS BLACK LEVEL MEMBERSHIP CARD
+            </Heading>
+            <Text>
+              Up to 50% discount on all The Goods Dept Product and Up to 30% on
+              all The Goods Dept FNB on birthday.
+            </Text>
+          </Stack>
+          <Stack>
+            <Image src="/benefit4.png"></Image>
+            <Heading>EARLY ACCESS TO THE GOODS DEPT COLLECTION DROPS</Heading>
+            <Text>
+              New shoes? Limited edition products? going to the hippest event in
+              town? your our VIP on every activities.
+            </Text>
+          </Stack>
+        </SimpleGrid>
       </Stack>
       <Image src="customize.png" alignSelf="center" />
 
