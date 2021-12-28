@@ -3,6 +3,7 @@ import {
   Flex,
   Heading,
   HStack,
+  VStack,
   Stack,
   Text,
   Image,
@@ -12,6 +13,7 @@ import {
   AspectRatio,
   ChakraProvider,
   theme,
+  Center,
 } from "@chakra-ui/react";
 
 import { Contract, BigNumber, utils } from "ethers";
@@ -113,93 +115,130 @@ function Home() {
       />
       <Flex
         minH="80vh"
-        background="#ffffff"
+        background="#F7F4EF"
         dir="row"
         p={16}
         justifyContent={"space-between"}
         id="mint"
       >
         <Stack p={8} flex={1}>
-          <Heading fontWeight={"bold"} textTransform={"uppercase"}>
-            The Goods Society
-          </Heading>
-          <Text fontSize={"xl"} textTransform={"uppercase"}>
-            Join The Society
-          </Text>
-          <Flex
-            background={"#e3e3e3"}
-            borderRadius={"18px"}
-            direction="column"
-            alignContent={"center"}
-          >
+          <Center flexDir="column">
+            <Heading fontWeight={"bold"} textTransform={"uppercase"}>
+              The Goods Society
+            </Heading>
+            <Text fontSize={"xl"} textTransform={"uppercase"}>
+              Join The Society
+            </Text>
+          </Center>
+          <Flex flexDir="row" justifyContent="space-between">
             <Flex
-              background={"#c4c4c4"}
-              borderRadius={"18px"}
-              width={"60%"}
-              height={"100%"}
-              position="relative"
-            ></Flex>
-            <Flex direction="column" px={4} py={2}>
-              <Heading textAlign={"center"}>{minted}/1100</Heading>
-              <Text fontSize={"xs"} alignSelf={"flex-end"}>
-                Minted
-              </Text>
+              background={"#fff"}
+              borderRadius={"full"}
+              direction="column"
+              alignContent={"center"}
+              w="30%"
+            >
+              <Flex
+                background={"#fff"}
+                borderRadius={"full"}
+                width={"60%"}
+                height={"100%"}
+                position="relative"
+              ></Flex>
+              <Flex direction="column" px={4} py={2}>
+                <Heading textAlign={"center"}>{minted}/1100</Heading>
+                <Text fontSize={"xs"} alignSelf={"flex-end"}>
+                  Minted
+                </Text>
+              </Flex>
+            </Flex>
+            <Flex
+              background={"#fff"}
+              borderRadius={"full"}
+              direction="column"
+              alignContent={"center"}
+              w="30%"
+            >
+              <Stack p={4}>
+                {/* <Text textAlign={"center"}>Amount To Mint</Text> */}
+                <HStack>
+                  <Button
+                    borderRadius={"full"}
+                    onClick={decrease}
+                    disabled
+                    bg="#5BAAF5"
+                  >
+                    -
+                  </Button>
+                  <Input
+                    value={1}
+                    textAlign={"center"}
+                    readOnly
+                    disabled
+                    borderColor="#fff"
+                  />
+                  <Button
+                    borderRadius={"full"}
+                    onClick={increase}
+                    disabled
+                    bg="#5BAAF5"
+                  >
+                    +
+                  </Button>
+                </HStack>
+              </Stack>
+            </Flex>
+            <Flex
+              // background={"#e3e3e3"}
+              borderRadius={"full"}
+              direction="column"
+              alignContent={"center"}
+              w="30%"
+            >
+              {account ? (
+                <Button
+                  size="lg"
+                  height="100%"
+                  color="#fff"
+                  borderRadius={"full"}
+                  background={"#7F66DE"}
+                  alignContent={"center"}
+                  onClick={async () => {
+                    // setIsCompounding(true);
+                    try {
+                      const connectedContract = new Contract(
+                        constants.contractAddress,
+                        abi,
+                        library?.getSigner()
+                      );
+                      const mintTx = await connectedContract.mint({
+                        value: `40000000000000000`,
+                      });
+                      await mintTx.wait();
+                      console.log(`${mintTx.hash}`);
+                    } catch (e) {
+                      console.error(e);
+                    } finally {
+                      // setIsCompounding(false);
+                    }
+                  }}
+                >
+                  MINT 0.08 ETH
+                </Button>
+              ) : (
+                <WalletSelection borderRadius={"18px"} background={"#7F66DE"} />
+              )}
             </Flex>
           </Flex>
-          <Flex
-            background={"#e3e3e3"}
-            borderRadius={"18px"}
-            direction="column"
-            alignContent={"center"}
-          >
-            <Stack p={4}>
-              <Text textAlign={"center"}>Amount To Mint</Text>
-              <HStack>
-                <Button borderRadius={"full"} onClick={decrease} disabled>
-                  -
-                </Button>
-                <Input value={1} textAlign={"center"} readOnly disabled />
-                <Button borderRadius={"full"} onClick={increase} disabled>
-                  +
-                </Button>
-              </HStack>
-            </Stack>
-          </Flex>
-          {account ? (
-            <Button
-              borderRadius={"18px"}
-              background={"#e3e3e3"}
-              onClick={async () => {
-                // setIsCompounding(true);
-                try {
-                  const connectedContract = new Contract(
-                    constants.contractAddress,
-                    abi,
-                    library?.getSigner()
-                  );
-                  const mintTx = await connectedContract.mint({
-                    value: `40000000000000000`,
-                  });
-                  await mintTx.wait();
-                  console.log(`${mintTx.hash}`);
-                } catch (e) {
-                  console.error(e);
-                } finally {
-                  // setIsCompounding(false);
-                }
-              }}
-            >
-              Mint
-            </Button>
-          ) : (
-            <WalletSelection borderRadius={"18px"} background={"#e3e3e3"} />
-          )}
         </Stack>
-        <AspectRatio ratio={1} flex={1}>
+
+        {/* <AspectRatio ratio={1} flex={1}>
           <Image src="section1.jpg" />
-        </AspectRatio>
+        </AspectRatio> */}
       </Flex>
+
       <Flex minH="80vh" dir="row" justifyContent={"space-between"} id="about">
+        {/* <Image src="c10.png"></Image> */}
         <Flex
           flex={4}
           backgroundImage="c10.png"
@@ -208,6 +247,7 @@ function Home() {
         />
         <Stack flex={5} p={8}>
           <Heading textTransform={"uppercase"}>Who are they?</Heading>
+
           <Text>
             The Goods People are citizens of the Goods City, they’re colors made
             them different & unique, with their signature tote bag ready to
@@ -226,56 +266,96 @@ function Home() {
           </Text>
         </Stack>
       </Flex>
-      <Stack spacing={16} p={16} id="utilities">
+      <Stack spacing={16} p={16} id="utilities" bg="#F7F4EF">
         <Heading textAlign={"center"} textTransform={"uppercase"}>
           Utilities
         </Heading>
-        <HStack spacing={16}>
-          <Image src="/benefit.png"></Image>
-          <Stack>
-            <Heading>FREE COFFEE AT THE GOODS CAFE FOR 1 YEAR</Heading>
-            <Text>
-              As part of the goods society, enjoy our goods coffee for free
-              every Monday - Wednesday starting February 2022.
-            </Text>
-          </Stack>
-        </HStack>
-        <HStack spacing={16}>
-          <Stack>
-            <Heading>
-              PRIVILEGE TO OWN THE FIRST EVER NON FUNGIBLE TOTE BAG
-            </Heading>
-            <Text>
-              A physical limited edition tote bag with NFT to verify its
-              ownership.
-            </Text>
-          </Stack>
-          <Image src="/benefit2.png"></Image>
-        </HStack>
-
-        <HStack spacing={16}>
-          <Image src="/benefit3.png"></Image>
-          <Stack>
-            <Heading>
-              INSTANT OWNERSHIP OF THE GOODS PLUS BLACK LEVEL MEMBERSHIP CARD
-            </Heading>
-            <Text>
-              Up to 50% discount on all The Goods Dept Product and Up to 30% on
-              all The Goods Dept FNB on birthday.
-            </Text>
-          </Stack>
-        </HStack>
-        <HStack spacing={16}>
-          <Stack>
-            <Heading>EARLY ACCESS TO THE GOODS DEPT COLLECTION DROPS</Heading>
-            <Text>
-              New shoes? Limited edition products? going to the hippest event in
-              town? your our VIP on every activities.
-            </Text>
-          </Stack>
-          <Image src="/benefit4.png"></Image>
-        </HStack>
+        <Flex justifyContent="space-between">
+          <HStack spacing={16} w="40%">
+            <Stack>
+              <Image src="/benefit.png"></Image>
+              <Heading>FREE COFFEE AT THE GOODS CAFE FOR 1 YEAR</Heading>
+              <Text>
+                As part of the goods society, enjoy our goods coffee for free
+                every Monday - Wednesday starting February 2022.
+              </Text>
+            </Stack>
+          </HStack>
+          <HStack spacing={16} w="40%">
+            <Stack>
+              <Image src="/benefit2.png"></Image>
+              <Heading>
+                PRIVILEGE TO OWN THE FIRST EVER NON FUNGIBLE TOTE BAG
+              </Heading>
+              <Text>
+                A physical limited edition tote bag with NFT to verify its
+                ownership.
+              </Text>
+            </Stack>
+          </HStack>
+        </Flex>
+        <Flex justifyContent="space-between">
+          <HStack spacing={16} w="40%">
+            <Stack>
+              <Image src="/benefit3.png"></Image>
+              <Heading>
+                INSTANT OWNERSHIP OF THE GOODS PLUS BLACK LEVEL MEMBERSHIP CARD
+              </Heading>
+              <Text>
+                Up to 50% discount on all The Goods Dept Product and Up to 30%
+                on all The Goods Dept FNB on birthday.
+              </Text>
+            </Stack>
+          </HStack>
+          <HStack spacing={16} w="40%">
+            <Stack>
+              <Image src="/benefit4.png"></Image>
+              <Heading>EARLY ACCESS TO THE GOODS DEPT COLLECTION DROPS</Heading>
+              <Text>
+                New shoes? Limited edition products? going to the hippest event
+                in town? your our VIP on every activities.
+              </Text>
+            </Stack>
+          </HStack>
+        </Flex>
       </Stack>
+
+      <Stack spacing={16} p={16} id="utilities" bg="#fff">
+        <Heading textAlign={"center"} textTransform={"uppercase"}>
+          THE TEAM
+        </Heading>
+        <Flex justifyContent="space-between" alignItems="start">
+          <HStack w="20%">
+            <Stack>
+              <Image src="/benefit.png"></Image>
+              <Heading size="md">Anton Wirjono</Heading>
+              <Text>Founder of The Goods Dept</Text>
+            </Stack>
+          </HStack>
+          <HStack w="20%">
+            <Stack>
+              <Image src="/benefit.png"></Image>
+              <Heading size="md">Hendrick</Heading>
+              <Text>Head of Marketing The Goods Dept</Text>
+            </Stack>
+          </HStack>
+          <HStack w="20%">
+            <Stack>
+              <Image src="/benefit.png"></Image>
+              <Heading size="md">Iman Waskito</Heading>
+              <Text>Lead Character Designer</Text>
+            </Stack>
+          </HStack>
+          <HStack w="20%">
+            <Stack>
+              <Image src="/benefit.png"></Image>
+              <Heading size="md">Yudha</Heading>
+              <Text>Creative Head The Goods Dept</Text>
+            </Stack>
+          </HStack>
+        </Flex>
+      </Stack>
+
       <Stack p={16} alignContent={"stretch"}>
         <Text fontSize={"xx-small"} alignItems={"center"}>
           The Good People © 2021 All Right Reserved
