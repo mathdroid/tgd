@@ -5771,6 +5771,11 @@ react-focus-lock@2.5.2:
     use-callback-ref "^1.2.5"
     use-sidecar "^1.0.5"
 
+react-infinite-ticker@^1.0.0-rc.1:
+  version "1.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/react-infinite-ticker/-/react-infinite-ticker-1.0.0-rc.1.tgz#4ae91262e44090aae32d4df098498aa537b8dbcc"
+  integrity sha512-mVaMBIqM5yXiCflbi4MZTXZiFSmajkOr3yCi1tq3T+plL+jOFPxxjXEUPH1q8l8X/Yj+4d7Yxe9t9xIODYFgSA==
+
 react-is@17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"

@@ -15,7 +15,10 @@ import {
   theme,
   Center,
   SimpleGrid,
+  Box,
 } from "@chakra-ui/react";
+import { HorizontalTicker } from "react-infinite-ticker";
+
 
 import { Contract, BigNumber, utils } from "ethers";
 import { WalletSelection } from "../components/WalletSelection";
@@ -117,10 +120,10 @@ function Home() {
         backgroundPosition={"bottom"}
       />
       <Flex
-        minH="32rem"
         background="#F7F4EF"
         dir="row"
         p={16}
+        pb={0}
         justifyContent={"space-between"}
         id="mint"
       >
@@ -196,10 +199,23 @@ function Home() {
               )}
           </Stack>
         </Stack>
-
-        {/* <AspectRatio ratio={1} flex={1}>
-          <Image src="section1.jpg" />
-        </AspectRatio> */}
+      </Flex>
+      <Flex
+        direction="column"
+        alignItems="center"
+        justifyContent="stretch"
+        background="#F7F4EF"
+        w="100%"
+        minH="50vh"
+      >
+        <HorizontalTicker>
+          {
+            Array(20).fill(1).map((_, i) => (<Box key={i} p={4} m={4} minW="24rem">
+            <Image src={`characters/Character${i+1}.png`}/>
+            </Box>))
+          }
+          
+        </HorizontalTicker>
       </Flex>
 
       <Flex
