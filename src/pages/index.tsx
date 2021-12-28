@@ -117,7 +117,7 @@ function Home() {
         backgroundPosition={"bottom"}
       />
       <Flex
-        minH="80vh"
+        minH="32rem"
         background="#F7F4EF"
         dir="row"
         p={16}
@@ -125,7 +125,7 @@ function Home() {
         id="mint"
       >
         <Stack p={8} flex={1}>
-          <Center flexDir="column">
+          <Center pb={8} flexDir="column">
             <Heading fontWeight={"bold"} textTransform={"uppercase"}>
               The Goods Society
             </Heading>
@@ -133,9 +133,7 @@ function Home() {
               Join The Society
             </Text>
           </Center>
-          <Flex
-            flexDir={"column"}
-            justifyContent="space-around"
+          <Stack
             alignItems="center"
             flex={1}
           >
@@ -161,47 +159,8 @@ function Home() {
                 </Text>
               </Flex>
             </Flex>
-            {/* <Flex
-              background={"#fff"}
-              borderRadius={"full"}
-              direction="column"
-              alignContent={"center"}
-              w="30%"
-            >
-                <Text textAlign={"center"}>Amount To Mint</Text>
-                <HStack>
-                  <Button
-                    borderRadius={"full"}
-                    onClick={decrease}
-                    disabled
-                    bg="#5BAAF5"
-                  >
-                    -
-                  </Button>
-                  <Input
-                    value={1}
-                    textAlign={"center"}
-                    readOnly
-                    disabled
-                    borderColor="#fff"
-                  />
-                  <Button
-                    borderRadius={"full"}
-                    onClick={increase}
-                    disabled
-                    bg="#5BAAF5"
-                  >
-                    +
-                  </Button>
-                </HStack>
-            </Flex> */}
-            <Flex
-              // background={"#e3e3e3"}
-              borderRadius={"full"}
-              direction="column"
-              alignContent={"center"}
-              width={["100%"]}
-            >
+            
+
               {account ? (
                 <Button
                   alignSelf={"center"}
@@ -235,8 +194,7 @@ function Home() {
               ) : (
                 <WalletSelection borderRadius={"18px"} background={"#7F66DE"} />
               )}
-            </Flex>
-          </Flex>
+          </Stack>
         </Stack>
 
         {/* <AspectRatio ratio={1} flex={1}>
