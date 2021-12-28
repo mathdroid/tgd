@@ -127,7 +127,7 @@ function Home() {
         justifyContent={"space-between"}
         id="mint"
       >
-        <Stack p={8} flex={1}>
+        <Stack p={8} flex={1} width={"100%"}>
           <Center pb={8} flexDir="column">
             <Heading fontWeight={"bold"} textTransform={"uppercase"}>
               The Goods Society
