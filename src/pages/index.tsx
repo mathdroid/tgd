@@ -325,28 +325,56 @@ function Home() {
         <Flex justifyContent="space-between" alignItems="start">
           <HStack w="20%">
             <Stack>
-              <Image src="/benefit.png"></Image>
+              <Image
+                src="/teams/Anton.png"
+                borderRadius="20px"
+                maxW="197px"
+                maxH="197px"
+                w="100%"
+                h="10%"
+              ></Image>
               <Heading size="md">Anton Wirjono</Heading>
               <Text>Founder of The Goods Dept</Text>
             </Stack>
           </HStack>
           <HStack w="20%">
             <Stack>
-              <Image src="/benefit.png"></Image>
+              <Image
+                src="/teams/Hendrick.png"
+                maxW="197px"
+                maxH="197px"
+                w="100%"
+                h="10%"
+                borderRadius="20px"
+              ></Image>
               <Heading size="md">Hendrick</Heading>
               <Text>Head of Marketing The Goods Dept</Text>
             </Stack>
           </HStack>
           <HStack w="20%">
             <Stack>
-              <Image src="/benefit.png"></Image>
+              <Image
+                src="/teams/iman.png"
+                borderRadius="20px"
+                maxW="197px"
+                maxH="197px"
+                w="100%"
+                h="10%"
+              ></Image>
               <Heading size="md">Iman Waskito</Heading>
               <Text>Lead Character Designer</Text>
             </Stack>
           </HStack>
           <HStack w="20%">
             <Stack>
-              <Image src="/benefit.png"></Image>
+              <Image
+                src="/teams/yudha.png"
+                borderRadius="20px"
+                maxW="197px"
+                maxH="197px"
+                w="100%"
+                h="10%"
+              ></Image>
               <Heading size="md">Yudha</Heading>
               <Text>Creative Head The Goods Dept</Text>
             </Stack>
