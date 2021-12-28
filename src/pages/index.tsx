@@ -152,15 +152,14 @@ function Home() {
                 </Text>
               </Flex>
             </Flex>
-            <Flex
+            {/* <Flex
               background={"#fff"}
               borderRadius={"full"}
               direction="column"
               alignContent={"center"}
               w="30%"
             >
-              <Stack p={4}>
-                {/* <Text textAlign={"center"}>Amount To Mint</Text> */}
+                <Text textAlign={"center"}>Amount To Mint</Text>
                 <HStack>
                   <Button
                     borderRadius={"full"}
@@ -186,8 +185,7 @@ function Home() {
                     +
                   </Button>
                 </HStack>
-              </Stack>
-            </Flex>
+            </Flex> */}
             <Flex
               // background={"#e3e3e3"}
               borderRadius={"full"}
@@ -223,7 +221,7 @@ function Home() {
                     }
                   }}
                 >
-                  MINT 0.08 ETH
+                  MINT 1 (0.04 ETH)
                 </Button>
               ) : (
                 <WalletSelection borderRadius={"18px"} background={"#7F66DE"} />
