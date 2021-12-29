@@ -16,10 +16,10 @@ import {
   Center,
   SimpleGrid,
   Box,
+  Icon,
 } from "@chakra-ui/react";
 import { HorizontalTicker } from "react-infinite-ticker";
-
-
+import { FaDiscord, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Contract, BigNumber, utils } from "ethers";
 import { WalletSelection } from "../components/WalletSelection";
 import { ProviderWeb3, useWeb3 } from "@lido-sdk/web3-react";
@@ -31,6 +31,7 @@ import { withPasswordProtect } from "@storyofams/next-password-protect";
 import constants from "../constants";
 import { DAppProvider, useContractCall } from "@usedapp/core";
 import { NextSeo } from "next-seo";
+import { OsIcon } from "../components/os-icon";
 
 export function useMintedAmount() {
   const [totalMinted]: any =
@@ -110,14 +111,36 @@ function Home() {
           flex={1}
           px={4}
         >
+          <HStack display={["none", "none", "flex"]} spacing={4}>
+          <Link href="https://opensea.io/collection/thegoodssociety" isExternal>
+          <OsIcon viewBox="0 0 100 100" height="2rem" width="2rem" />
+        </Link>
+        <Link href="https://discord.gg/thegoodssociety" isExternal>
+          <Icon as={FaDiscord} boxSize="2rem" />
+        </Link>
+        <Link href="https://twitter.com/goodssociety" isExternal>
+          <Icon as={FaTwitter} boxSize="2rem" />
+        </Link>
+        <Link href="https://www.instagram.com/thegoods.society" isExternal>
+          <Icon as={FaInstagram} boxSize="2rem" />
+        </Link>
+      </HStack>
           <WalletSelection />
         </HStack>
       </Flex>
       <Flex
+        display={["none", "none", "flex"]}
         minH="100vh"
         backgroundImage={"/banner.png"}
         backgroundSize={"cover"}
         backgroundPosition={"bottom"}
+      />
+      <Flex
+        display={["flex", "flex", "none"]}
+        h="80vh"
+        backgroundImage={"/mobile-banner.png"}
+        backgroundSize={"cover"}
+        backgroundPosition={"top"}
       />
       <Flex
         background="#F7F4EF"
@@ -156,7 +179,7 @@ function Home() {
                 position="relative"
               ></Flex>
               <Flex direction="column" px={4} py={2}>
-                <Heading textAlign={"center"}>{minted}/1100</Heading>
+                <Heading textAlign={"center"}>{minted || '-'}/1100</Heading>
                 <Text fontSize={"xs"} alignSelf={"flex-end"}>
                   Minted
                 </Text>
@@ -296,118 +319,113 @@ function Home() {
           </Stack>
         </SimpleGrid>
       </Stack>
-      <Image src="customize.png" alignSelf="center" />
+      <Image mx={4} src="purp2.png" alignSelf="center" />
+      <Image mx={4} src="red2.png" alignSelf="center" />
 
       <Stack spacing={16} p={16} id="utilities" bg="#fff">
         <Heading textAlign={"center"} textTransform={"uppercase"}>
           THE TEAM
         </Heading>
-        <SimpleGrid columns={[1, 2, 4]} spacing={2}>
-          <HStack maxW="24rem" w="100%">
-            <Stack>
+        <SimpleGrid columns={[1, 2, 4]} spacing={4}>
+            <Stack maxW="24rem" w="100%">
               <Image
                 src="/teams/Anton.png"
                 borderRadius="20px"
                 maxW="197px"
                 maxH="197px"
-                w="100%"
-                h="10%"
+                h="100%"
               ></Image>
               <Heading size="md">Anton Wirjono</Heading>
               <Text>Founder of The Goods Dept</Text>
             </Stack>
-          </HStack>
-          <HStack maxW="24rem" w="100%">
-            <Stack>
+          <Stack maxW="24rem" w="100%">
               <Image
                 src="/teams/Hendrick.png"
                 maxW="197px"
                 maxH="197px"
-                w="100%"
-                h="10%"
+                h="100%"
                 borderRadius="20px"
               ></Image>
               <Heading size="md">Hendrick</Heading>
               <Text>Head of Marketing The Goods Dept</Text>
-            </Stack>
-          </HStack>
-          <HStack maxW="24rem" w="100%">
-            <Stack>
+          </Stack>
+          <Stack maxW="24rem" w="100%">
               <Image
                 src="/teams/iman.png"
                 borderRadius="20px"
                 maxW="197px"
                 maxH="197px"
-                w="100%"
-                h="10%"
+                h="100%"
               ></Image>
               <Heading size="md">Iman Waskito</Heading>
               <Text>Lead Character Designer</Text>
             </Stack>
-          </HStack>
-          <HStack maxW="24rem" w="100%">
-            <Stack>
+          <Stack maxW="24rem" w="100%">
               <Image
                 src="/teams/yudha.png"
                 borderRadius="20px"
                 maxW="197px"
                 maxH="197px"
-                w="100%"
-                h="10%"
+                h="100%"
               ></Image>
               <Heading size="md">Yudha</Heading>
               <Text>Creative Head The Goods Dept</Text>
             </Stack>
-          </HStack>
-          <HStack maxW="24rem" w="100%">
-            <Stack>
+          <Stack maxW="24rem" w="100%">
               <Image
                 src="/teams/nov.jpeg"
                 borderRadius="20px"
                 maxW="197px"
                 maxH="197px"
-                w="100%"
-                h="10%"
+                h="100%"
               ></Image>
               <Heading size="md">Novrizal Pratama</Heading>
               <Text>Gaspack - Community Advisor</Text>
             </Stack>
-          </HStack>
-          <HStack maxW="24rem" w="100%">
-            <Stack>
+          <Stack maxW="24rem" w="100%">
               <Image
                 src="/teams/sunny.jpeg"
                 borderRadius="20px"
                 maxW="197px"
                 maxH="197px"
-                w="100%"
-                h="10%"
+                h="100%"
               ></Image>
               <Heading size="md">Sunny Gho</Heading>
               <Text>Gaspack - Creative Advisor</Text>
             </Stack>
-          </HStack>
-          <HStack maxW="24rem" w="100%">
-            <Stack>
+          <Stack maxW="24rem" w="100%">
               <Image
                 src="/teams/irzan.jpeg"
                 borderRadius="20px"
                 maxW="197px"
                 maxH="197px"
-                w="100%"
-                h="10%"
+                h="100%"
               ></Image>
               <Heading size="md">Irzan Raditya</Heading>
               <Text>Gaspack - Tech Advisor</Text>
             </Stack>
-          </HStack>
         </SimpleGrid>
       </Stack>
 
       <Stack p={16} alignContent={"stretch"}>
-        <Text fontSize={"xx-small"} alignItems={"center"}>
+        
+        <HStack justifyContent={"center"} spacing={4}>
+        <Link href="https://opensea.io/collection/thegoodssociety" isExternal>
+          <OsIcon viewBox="0 0 100 100" height="2rem" width="2rem" />
+        </Link>
+        <Link href="https://discord.gg/thegoodssociety" isExternal>
+          <Icon as={FaDiscord} boxSize="2rem" />
+        </Link>
+        <Link href="https://twitter.com/goodssociety" isExternal>
+          <Icon as={FaTwitter} boxSize="2rem" />
+        </Link>
+        <Link href="https://www.instagram.com/thegoods.society" isExternal>
+          <Icon as={FaInstagram} boxSize="2rem" />
+        </Link>
+      </HStack><Text fontSize={"xx-small"} alignItems={"center"} textAlign={"center"}>
           The Good People © 2021 All Right Reserved
         </Text>
+
       </Stack>
     </Flex>
   );
