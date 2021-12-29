@@ -112,19 +112,22 @@ function Home() {
           px={4}
         >
           <HStack display={["none", "none", "flex"]} spacing={4}>
-          <Link href="https://opensea.io/collection/thegoodssociety" isExternal>
-          <OsIcon viewBox="0 0 100 100" height="2rem" width="2rem" />
-        </Link>
-        <Link href="https://discord.gg/thegoodssociety" isExternal>
-          <Icon as={FaDiscord} boxSize="2rem" />
-        </Link>
-        <Link href="https://twitter.com/goodssociety" isExternal>
-          <Icon as={FaTwitter} boxSize="2rem" />
-        </Link>
-        <Link href="https://www.instagram.com/thegoods.society" isExternal>
-          <Icon as={FaInstagram} boxSize="2rem" />
-        </Link>
-      </HStack>
+            <Link
+              href="https://opensea.io/collection/thegoodssociety"
+              isExternal
+            >
+              <OsIcon viewBox="0 0 100 100" height="2rem" width="2rem" />
+            </Link>
+            <Link href="https://discord.gg/thegoodssociety" isExternal>
+              <Icon as={FaDiscord} boxSize="2rem" />
+            </Link>
+            <Link href="https://twitter.com/goodssociety" isExternal>
+              <Icon as={FaTwitter} boxSize="2rem" />
+            </Link>
+            <Link href="https://www.instagram.com/thegoods.society" isExternal>
+              <Icon as={FaInstagram} boxSize="2rem" />
+            </Link>
+          </HStack>
           <WalletSelection />
         </HStack>
       </Flex>
@@ -159,10 +162,7 @@ function Home() {
               Join The Society
             </Text>
           </Center>
-          <Stack
-            alignItems="center"
-            flex={1}
-          >
+          <Stack alignItems="center" flex={1}>
             <Flex
               background={"#fff"}
               borderRadius={"full"}
@@ -179,47 +179,46 @@ function Home() {
                 position="relative"
               ></Flex>
               <Flex direction="column" px={4} py={2}>
-                <Heading textAlign={"center"}>{minted || '-'}/1100</Heading>
+                <Heading textAlign={"center"}>{minted || "-"}/1100</Heading>
                 <Text fontSize={"xs"} alignSelf={"flex-end"}>
                   Minted
                 </Text>
               </Flex>
             </Flex>
-            
 
-              {account ? (
-                <Button
-                  alignSelf={"center"}
-                  color="#fff"
-                  w="24rem"
-                  borderRadius={"full"}
-                  background={"#7F66DE"}
-                  alignContent={"center"}
-                  onClick={async () => {
-                    // setIsCompounding(true);
-                    try {
-                      const connectedContract = new Contract(
-                        constants.contractAddress,
-                        abi,
-                        library?.getSigner()
-                      );
-                      const mintTx = await connectedContract.mint({
-                        value: `40000000000000000`,
-                      });
-                      await mintTx.wait();
-                      console.log(`${mintTx.hash}`);
-                    } catch (e) {
-                      console.error(e);
-                    } finally {
-                      // setIsCompounding(false);
-                    }
-                  }}
-                >
-                  MINT 1 (0.04 ETH)
-                </Button>
-              ) : (
-                <WalletSelection borderRadius={"18px"} background={"#7F66DE"} />
-              )}
+            {account ? (
+              <Button
+                alignSelf={"center"}
+                color="#fff"
+                w="24rem"
+                borderRadius={"full"}
+                background={"#7F66DE"}
+                alignContent={"center"}
+                onClick={async () => {
+                  // setIsCompounding(true);
+                  try {
+                    const connectedContract = new Contract(
+                      constants.contractAddress,
+                      abi,
+                      library?.getSigner()
+                    );
+                    const mintTx = await connectedContract.mint({
+                      value: `40000000000000000`,
+                    });
+                    await mintTx.wait();
+                    console.log(`${mintTx.hash}`);
+                  } catch (e) {
+                    console.error(e);
+                  } finally {
+                    // setIsCompounding(false);
+                  }
+                }}
+              >
+                MINT 1 (0.04 ETH)
+              </Button>
+            ) : (
+              <WalletSelection borderRadius={"18px"} background={"#7F66DE"} />
+            )}
           </Stack>
         </Stack>
       </Flex>
@@ -232,12 +231,13 @@ function Home() {
         minH="50vh"
       >
         <HorizontalTicker>
-          {
-            Array(20).fill(1).map((_, i) => (<Box key={i} p={4} m={4} minW="24rem">
-            <Image src={`characters/Character${i+1}.png`}/>
-            </Box>))
-          }
-          
+          {Array(20)
+            .fill(1)
+            .map((_, i) => (
+              <Box key={i} p={4} m={4} minW="24rem">
+                <Image src={`characters/Character${i + 1}.png`} />
+              </Box>
+            ))}
         </HorizontalTicker>
       </Flex>
 
@@ -319,6 +319,10 @@ function Home() {
           </Stack>
         </SimpleGrid>
       </Stack>
+      <Stack py={4} px={16} alignItems={"center"}>
+        <Heading textTransform={"uppercase"} textAlign={"center"}>Customize your looks</Heading>
+        <Text textAlign={"center"}>Coming soon in March 2022</Text>
+      </Stack>
       <Image mx={4} src="purp2.png" alignSelf="center" />
       <Image mx={4} src="red2.png" alignSelf="center" />
 
@@ -327,105 +331,104 @@ function Home() {
           THE TEAM
         </Heading>
         <SimpleGrid columns={[1, 2, 4]} spacing={4}>
-            <Stack maxW="24rem" w="100%">
-              <Image
-                src="/teams/Anton.png"
-                borderRadius="20px"
-                maxW="197px"
-                maxH="197px"
-                h="100%"
-              ></Image>
-              <Heading size="md">Anton Wirjono</Heading>
-              <Text>Founder of The Goods Dept</Text>
-            </Stack>
           <Stack maxW="24rem" w="100%">
-              <Image
-                src="/teams/Hendrick.png"
-                maxW="197px"
-                maxH="197px"
-                h="100%"
-                borderRadius="20px"
-              ></Image>
-              <Heading size="md">Hendrick</Heading>
-              <Text>Head of Marketing The Goods Dept</Text>
+            <Image
+              src="/teams/Anton.png"
+              borderRadius="20px"
+              maxW="197px"
+              maxH="197px"
+              h="100%"
+            ></Image>
+            <Heading size="md">Anton Wirjono</Heading>
+            <Text>Founder of The Goods Dept</Text>
           </Stack>
           <Stack maxW="24rem" w="100%">
-              <Image
-                src="/teams/iman.png"
-                borderRadius="20px"
-                maxW="197px"
-                maxH="197px"
-                h="100%"
-              ></Image>
-              <Heading size="md">Iman Waskito</Heading>
-              <Text>Lead Character Designer</Text>
-            </Stack>
+            <Image
+              src="/teams/Hendrick.png"
+              maxW="197px"
+              maxH="197px"
+              h="100%"
+              borderRadius="20px"
+            ></Image>
+            <Heading size="md">Hendrick</Heading>
+            <Text>Head of Marketing The Goods Dept</Text>
+          </Stack>
           <Stack maxW="24rem" w="100%">
-              <Image
-                src="/teams/yudha.png"
-                borderRadius="20px"
-                maxW="197px"
-                maxH="197px"
-                h="100%"
-              ></Image>
-              <Heading size="md">Yudha</Heading>
-              <Text>Creative Head The Goods Dept</Text>
-            </Stack>
+            <Image
+              src="/teams/iman.png"
+              borderRadius="20px"
+              maxW="197px"
+              maxH="197px"
+              h="100%"
+            ></Image>
+            <Heading size="md">Iman Waskito</Heading>
+            <Text>Lead Character Designer</Text>
+          </Stack>
           <Stack maxW="24rem" w="100%">
-              <Image
-                src="/teams/nov.jpeg"
-                borderRadius="20px"
-                maxW="197px"
-                maxH="197px"
-                h="100%"
-              ></Image>
-              <Heading size="md">Novrizal Pratama</Heading>
-              <Text>Gaspack - Community Advisor</Text>
-            </Stack>
+            <Image
+              src="/teams/yudha.png"
+              borderRadius="20px"
+              maxW="197px"
+              maxH="197px"
+              h="100%"
+            ></Image>
+            <Heading size="md">Yudha</Heading>
+            <Text>Creative Head The Goods Dept</Text>
+          </Stack>
           <Stack maxW="24rem" w="100%">
-              <Image
-                src="/teams/sunny.jpeg"
-                borderRadius="20px"
-                maxW="197px"
-                maxH="197px"
-                h="100%"
-              ></Image>
-              <Heading size="md">Sunny Gho</Heading>
-              <Text>Gaspack - Creative Advisor</Text>
-            </Stack>
+            <Image
+              src="/teams/nov.jpeg"
+              borderRadius="20px"
+              maxW="197px"
+              maxH="197px"
+              h="100%"
+            ></Image>
+            <Heading size="md">Novrizal Pratama</Heading>
+            <Text>Gaspack - Community Advisor</Text>
+          </Stack>
           <Stack maxW="24rem" w="100%">
-              <Image
-                src="/teams/irzan.jpeg"
-                borderRadius="20px"
-                maxW="197px"
-                maxH="197px"
-                h="100%"
-              ></Image>
-              <Heading size="md">Irzan Raditya</Heading>
-              <Text>Gaspack - Tech Advisor</Text>
-            </Stack>
+            <Image
+              src="/teams/sunny.jpeg"
+              borderRadius="20px"
+              maxW="197px"
+              maxH="197px"
+              h="100%"
+            ></Image>
+            <Heading size="md">Sunny Gho</Heading>
+            <Text>Gaspack - Creative Advisor</Text>
+          </Stack>
+          <Stack maxW="24rem" w="100%">
+            <Image
+              src="/teams/irzan.jpeg"
+              borderRadius="20px"
+              maxW="197px"
+              maxH="197px"
+              h="100%"
+            ></Image>
+            <Heading size="md">Irzan Raditya</Heading>
+            <Text>Gaspack - Tech Advisor</Text>
+          </Stack>
         </SimpleGrid>
       </Stack>
 
       <Stack p={16} alignContent={"stretch"}>
-        
         <HStack justifyContent={"center"} spacing={4}>
-        <Link href="https://opensea.io/collection/thegoodssociety" isExternal>
-          <OsIcon viewBox="0 0 100 100" height="2rem" width="2rem" />
-        </Link>
-        <Link href="https://discord.gg/thegoodssociety" isExternal>
-          <Icon as={FaDiscord} boxSize="2rem" />
-        </Link>
-        <Link href="https://twitter.com/goodssociety" isExternal>
-          <Icon as={FaTwitter} boxSize="2rem" />
-        </Link>
-        <Link href="https://www.instagram.com/thegoods.society" isExternal>
-          <Icon as={FaInstagram} boxSize="2rem" />
-        </Link>
-      </HStack><Text fontSize={"xx-small"} alignItems={"center"} textAlign={"center"}>
+          <Link href="https://opensea.io/collection/thegoodssociety" isExternal>
+            <OsIcon viewBox="0 0 100 100" height="2rem" width="2rem" />
+          </Link>
+          <Link href="https://discord.gg/thegoodssociety" isExternal>
+            <Icon as={FaDiscord} boxSize="2rem" />
+          </Link>
+          <Link href="https://twitter.com/goodssociety" isExternal>
+            <Icon as={FaTwitter} boxSize="2rem" />
+          </Link>
+          <Link href="https://www.instagram.com/thegoods.society" isExternal>
+            <Icon as={FaInstagram} boxSize="2rem" />
+          </Link>
+        </HStack>
+        <Text fontSize={"xx-small"} alignItems={"center"} textAlign={"center"}>
           The Good People © 2021 All Right Reserved
         </Text>
-
       </Stack>
     </Flex>
   );
